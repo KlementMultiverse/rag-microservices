@@ -1,0 +1,818 @@
+=== PAGE 1 ===
+RAG MICROSERVICES — THE ULTIMATE BEGINNER’S SELF-TEACHING GUIDE
+==============================================================
+
+Welcome, future elite developer.
+
+This document is your companion — not your crutch.
+
+You will not be handed code.
+You will be handed **process**.
+You will be taught **how to search**.
+You will be guided to **think, try, fail, fix, and THEN understand**.
+
+Each step is broken into substeps.
+Each substep tells you:
+→ What to DO
+→ Where to SEARCH
+→ What to THINK
+→ What ERROR you might see
+→ How to DEBUG
+→ And ONLY THEN — what CODE you should end up with — and what it does.
+
+This document will become your RAG system’s first knowledge base.
+
+Let’s begin.
+
+=== PAGE 2 ===
+STEP 1: CREATE PROJECT FOLDER — SUBSTEP BY SUBSTEP
+==================================================
+
+🔹 SUBSTEP 1.1: Open your terminal
+
+→ How? 
+   - Mac: Press Cmd+Space → type “Terminal” → Enter.
+   - Linux: Ctrl+Alt+T.
+   - Windows: Search “Command Prompt” or “PowerShell”.
+
+💡 GOAL: You need a command-line interface to create folders.
+
+—
+
+🔹 SUBSTEP 1.2: Navigate to your home directory (optional but clean)
+
+→ Type: cd ~
+→ Press Enter.
+
+💡 WHY? So you know exactly where your project lives.
+
+✅ WHAT THIS COMMAND DOES: 
+Changes your current location to your home folder (e.g., /home/yourname or /Users/yourname).
+
+—
+
+🔹 SUBSTEP 1.3: Create the main project folder
+
+→ Type: mkdir -p rag-microservices/document-ingestor
+→ Press Enter.
+
+💡 IF YOU FORGET WHAT mkdir DOES:
+→ Open browser → search: “linux mkdir command”
+→ You’ll learn: mkdir = “make directory”
+
+✅ WHAT THIS COMMAND DOES:
+Creates a folder called “rag-microservices”, and inside it, “document-ingestor”. The -p flag means “create parents if needed”.
+
+—
+
+🔹 SUBSTEP 1.4: Navigate into the folder
+
+→ Type: cd rag-microservices/document-ingestor
+→ Press Enter.
+
+💡 VERIFY: Type pwd → should show full path to this folder.
+
+✅ WHAT THIS COMMAND DOES:
+Changes your current working directory — so when you create files, they go here.
+
+—
+
+💡 SAMPLE Q&A:
+
+Q: What if I’m on Windows and mkdir doesn’t work?
+A: It does — but use backslashes: mkdir rag-microservices\document-ingestor
+
+Q: Can I use a different folder name?
+A: Yes — but stick to this for consistency with this guide.
+
+Q: What does “cd” mean?
+A: “Change Directory” — it moves you between folders.
+
+—
+
+✅ FINAL STRUCTURE AFTER THIS STEP:
+~/rag-microservices/document-ingestor/   ← you are here
+
+=== PAGE 3 ===
+STEP 2: CREATE PYTHON FILE — SUBSTEP BY SUBSTEP
+===============================================
+
+🔹 SUBSTEP 2.1: Create the file ingest_pdf.py
+
+→ Type: touch ingest_pdf.py
+→ Press Enter.
+
+💡 IF YOU DON’T KNOW WHAT touch DOES:
+→ Search: “linux touch command”
+→ Learn: It creates an empty file.
+
+✅ WHAT THIS COMMAND DOES:
+Creates a new, empty file named “ingest_pdf.py” in your current folder.
+
+—
+
+🔹 SUBSTEP 2.2: Verify it exists
+
+→ Type: ls -l
+→ Press Enter.
+
+💡 EXPECT TO SEE: ingest_pdf.py in the list.
+
+✅ WHAT THIS COMMAND DOES:
+Lists all files in current folder — with details (permissions, size, etc.).
+
+—
+
+🔹 SUBSTEP 2.3: Open it in your editor
+
+→ If you have VS Code: code ingest_pdf.py
+→ If you have nano: nano ingest_pdf.py
+→ If on Windows: Right-click → Open with Notepad
+
+💡 IF YOU DON’T HAVE VS CODE:
+→ Search: “install vscode linux/mac/windows” → follow official guide.
+
+✅ WHAT THIS STEP DOES:
+Opens the file so you can write code inside it.
+
+—
+
+💡 SAMPLE Q&A:
+
+Q: What if touch doesn’t work on Windows?
+A: Use: type nul > ingest_pdf.py   OR create via File Explorer → New → Text Document → rename to .py
+
+Q: Should I write code now?
+A: No — not yet. Just create and open the file.
+
+Q: Why .py extension?
+A: It tells your system this is a Python file.
+
+—
+
+✅ YOU NOW HAVE: An empty Python file — ready for your first lines of code.
+
+=== PAGE 4 ===
+STEP 3: SEARCH FOR PDF LOADER — SUBSTEP BY SUBSTEP
+==================================================
+
+🔹 SUBSTEP 3.1: Open your web browser
+
+→ Chrome, Firefox, Edge — any is fine.
+
+—
+
+🔹 SUBSTEP 3.2: Search for the tool
+
+→ In search bar, type exactly: langchain load pdf example
+→ Press Enter.
+
+💡 WHY THIS SEARCH?
+Because you want to load a PDF — and LangChain is the most popular tool for this in RAG systems.
+
+—
+
+🔹 SUBSTEP 3.3: Click the official result
+
+→ Look for: “PDF — 🦜️🔗 LangChain”
+→ URL should be: https://python.langchain.com/docs/modules/data_connection/document_loaders/pdf
+
+💡 IF YOU SEE BLOGS OR VIDEOS:
+→ Skip them. Only trust official docs for now.
+
+✅ WHAT YOU’RE LOOKING FOR:
+- The name of the loader (starts with “PyPDF…”)
+- What package to install (hint: pypdf)
+- Example code using .load()
+
+—
+
+🔹 SUBSTEP 3.4: Read — don’t copy
+
+→ Scan the page.
+→ Note down:
+   - Import statement
+   - Class name
+   - Method to load
+   - Output structure
+
+💡 GOAL: Understand — not copy.
+
+—
+
+💡 SAMPLE Q&A:
+
+Q: What is LangChain?
+A: A framework for building apps with LLMs — like RAG.
+
+Q: Why not use PyPDF2 directly?
+A: LangChain gives you a standard interface — easier to swap tools later.
+
+Q: What if the page looks too complex?
+A: Focus only on the PyPDFLoader section. Ignore the rest for now.
+
+—
+
+✅ YOU NOW KNOW: You need PyPDFLoader from langchain_community, and to install pypdf.
+
+=== PAGE 5 ===
+STEP 4: CREATE VIRTUAL ENVIRONMENT — SUBSTEP BY SUBSTEP
+======================================================
+
+🔹 SUBSTEP 4.1: Go back to project root
+
+→ Type: cd ../..
+→ Press Enter.
+
+💡 WHY? Because virtual environments should live at project root — so all services can share it (for now).
+
+✅ WHAT THIS COMMAND DOES:
+Moves you up two levels — from document-ingestor → rag-microservices → ~ (or wherever rag-microservices lives).
+
+—
+
+🔹 SUBSTEP 4.2: Create the virtual environment
+
+→ Type: python -m venv venv
+→ Press Enter.
+
+💡 IF YOU GET ERROR:
+→ Search: “python -m venv not working”
+→ You might need to install python3-venv (Linux) or use python3 instead of python.
+
+✅ WHAT THIS COMMAND DOES:
+Creates a folder called “venv” — which contains an isolated Python environment.
+
+—
+
+🔹 SUBSTEP 4.3: Activate it
+
+→ Mac/Linux: source venv/bin/activate
+→ Windows: venv\Scripts\activate
+
+💡 VERIFY: You should see (venv) at the start of your terminal line.
+
+✅ WHAT THIS COMMAND DOES:
+Activates the isolated environment — so any packages you install stay here.
+
+—
+
+🔹 SUBSTEP 4.4: Install required packages
+
+→ Type: pip install pypdf langchain-community
+→ Press Enter.
+
+💡 IF SLOW: That’s normal — it’s downloading and installing.
+
+✅ WHAT THIS COMMAND DOES:
+Installs the libraries you need to load PDFs.
+
+—
+
+🔹 SUBSTEP 4.5: Save your dependencies
+
+→ Type: pip freeze > requirements.txt
+→ Press Enter.
+
+✅ WHAT THIS COMMAND DOES:
+Creates a file listing every installed package + version — so you (or anyone) can recreate this environment.
+
+—
+
+💡 SAMPLE Q&A:
+
+Q: What is a virtual environment?
+A: A sandbox — keeps your project’s packages separate from others.
+
+Q: Why not install globally?
+A: Avoids version conflicts. Professional projects always use venv.
+
+Q: What if pip freeze is empty?
+A: You forgot to activate venv. Run source venv/bin/activate first.
+
+—
+
+✅ YOU NOW HAVE: An isolated, reproducible Python environment — ready for coding.
+
+=== PAGE 6 ===
+STEP 5: PREPARE TEST PDF — SUBSTEP BY SUBSTEP
+=============================================
+
+🔹 SUBSTEP 5.1: Create sample.txt
+
+→ You are reading it now — this entire guide is your sample.txt.
+
+→ Save this file as “sample.txt” in your document-ingestor folder.
+
+—
+
+🔹 SUBSTEP 5.2: Convert to PDF
+
+OPTION A (Linux/Mac with enscript):
+→ Type: enscript -p - sample.txt | ps2pdf - sample.pdf
+
+OPTION B (Google Docs):
+→ Open sample.txt → copy all → paste into new Google Doc → File → Download → PDF → save as sample.pdf
+
+OPTION C (Word):
+→ Paste into Word → Save As → PDF → sample.pdf
+
+—
+
+🔹 SUBSTEP 5.3: Move it to the right folder
+
+→ Make sure sample.pdf is in document-ingestor — same folder as ingest_pdf.py.
+
+→ Verify: ls → should show both files.
+
+—
+
+💡 SAMPLE Q&A:
+
+Q: What if my PDF has no text?
+A: You’ll see len(page.page_content) = 0 — then you know it’s scanned — use this text-based one.
+
+Q: Can I use my own PDF?
+A: Yes — but if it’s scanned, switch to this one for learning.
+
+Q: Why not start with a real business PDF?
+A: Because you’re learning — start simple, then scale.
+
+—
+
+✅ YOU NOW HAVE: A guaranteed text-based PDF — perfect for testing.
+
+=== PAGE 7 ===
+STEP 6: LOAD AND PRINT PDF — SUBSTEP BY SUBSTEP
+===============================================
+
+🔹 SUBSTEP 6.1: Open ingest_pdf.py
+
+→ Terminal: code ingest_pdf.py   (or nano, etc.)
+
+—
+
+🔹 SUBSTEP 6.2: Write the import
+
+→ Type: from langchain_community.document_loaders import
+
+→ Try to remember the rest.
+
+💡 IF STUCK: Go back to LangChain docs → find the import.
+
+✅ WHAT YOU SHOULD WRITE:
+from langchain_community.document_loaders import PyPDFLoader
+
+✅ WHAT IT DOES: Makes the PDF loader available in your script.
+
+—
+
+🔹 SUBSTEP 6.3: Create the loader
+
+→ Type: loader =
+
+→ What goes next?
+
+💡 HINT: You need to create a new PyPDFLoader — and give it a filename.
+
+✅ WHAT YOU SHOULD WRITE:
+loader = PyPDFLoader("sample.pdf")
+
+✅ WHAT IT DOES: Points the loader to your file — doesn’t load yet.
+
+—
+
+🔹 SUBSTEP 6.4: Load the pages
+
+→ Type: pages =
+
+→ How to load?
+
+💡 HINT: In docs, they use .load()
+
+✅ WHAT YOU SHOULD WRITE:
+pages = loader.load()
+
+✅ WHAT IT DOES: Reads the PDF — returns list of Document objects.
+
+—
+
+🔹 SUBSTEP 6.5: Print metadata
+
+→ Type: print(pages[0].metadata)
+
+✅ WHAT IT DOES: Shows info like page number, source, producer.
+
+—
+
+🔹 SUBSTEP 6.6: Print content
+
+→ Type: print(pages[0].page_content)
+
+✅ WHAT IT DOES: Shows actual text from first page.
+
+—
+
+🔹 SUBSTEP 6.7: Print lengths (debug)
+
+→ Type:
+for i, page in enumerate(pages):
+    print(f"Page {i+1} length: {len(page.page_content)} characters")
+
+✅ WHAT IT DOES: Helps you verify text was extracted — if 0, PDF is scanned.
+
+—
+
+🔹 SUBSTEP 6.8: Run it
+
+→ Save file → terminal → python3 ingest_pdf.py
+
+—
+
+💡 SAMPLE Q&A:
+
+Q: ModuleNotFoundError?
+A: Activate venv → pip install missing package.
+
+Q: FileNotFoundError?
+A: Is sample.pdf in the right folder? Run ls to check.
+
+Q: Empty content?
+A: Use text-based PDF — not scanned.
+
+—
+
+✅ FINAL CODE (but you typed it yourself!):
+[See previous page for full code + line-by-line explanation]
+
+=== PAGE 8 ===
+STEP 7: SPLIT TEXT INTO CHUNKS — SUBSTEP BY SUBSTEP (COMING NEXT)
+=================================================================
+
+🔹 SUBSTEP 7.1: Search for text splitter
+
+→ Browser → search: “langchain text splitter example”
+
+→ Click: https://python.langchain.com/docs/modules/data_connection/text_splitters/
+
+—
+
+🔹 SUBSTEP 7.2: Find the right splitter
+
+→ Look for: RecursiveCharacterTextSplitter
+
+—
+
+🔹 SUBSTEP 7.3: Learn parameters
+
+→ chunk_size = max characters per chunk (try 300)
+→ chunk_overlap = chars to repeat (try 50)
+
+—
+
+🔹 SUBSTEP 7.4: Import it
+
+→ Type: from langchain.text_splitter import RecursiveCharacterTextSplitter
+
+—
+
+🔹 SUBSTEP 7.5: Create splitter
+
+→ Type: splitter = RecursiveCharacterTextSplitter(chunk_size=300, chunk_overlap=50)
+
+—
+
+🔹 SUBSTEP 7.6: Split documents
+
+→ Type: chunks = splitter.split_documents(pages)
+
+—
+
+🔹 SUBSTEP 7.7: Print chunks
+
+→ Type:
+for i, chunk in enumerate(chunks[:3]):
+    print(f"--- Chunk {i+1} ---\n{chunk.page_content}\n")
+
+—
+
+💡 SAMPLE Q&A:
+
+Q: Why split text?
+A: LLMs can’t read long docs at once — we break them into bite-sized pieces.
+
+Q: What is chunk_overlap?
+A: Repeats end of previous chunk — so context isn’t lost at boundaries.
+
+Q: Can I split by sentence?
+A: Yes — but RecursiveCharacter is best for beginners.
+
+—
+
+✅ YOU WILL LEARN: How to prepare text for embedding — next critical RAG step.
+
+=== PAGE 9 ===
+STEP 8: GENERATE EMBEDDINGS — SUBSTEP BY SUBSTEP (FUTURE)
+=========================================================
+
+🔹 SUBSTEP 8.1: Search for embedding model
+
+→ Search: “sentence transformers example”
+
+→ Go to: www.sbert.net
+
+—
+
+🔹 SUBSTEP 8.2: Install
+
+→ pip install sentence-transformers
+
+—
+
+🔹 SUBSTEP 8.3: Import model
+
+→ from sentence_transformers import SentenceTransformer
+
+—
+
+🔹 SUBSTEP 8.4: Load model
+
+→ model = SentenceTransformer('all-MiniLM-L6-v2')
+
+—
+
+🔹 SUBSTEP 8.5: Embed chunks
+
+→ embeddings = model.encode([chunk.page_content for chunk in chunks])
+
+—
+
+🔹 SUBSTEP 8.6: Print shape
+
+→ print(embeddings.shape)
+
+—
+
+💡 SAMPLE Q&A:
+
+Q: What is an embedding?
+A: A list of numbers representing meaning — so we can search by similarity.
+
+Q: Why MiniLM?
+A: Small, fast, good for learning.
+
+Q: What does .encode() do?
+A: Converts text → vector (list of numbers).
+
+—
+
+✅ YOU WILL LEARN: How to turn text into numbers — the language of AI.
+
+=== PAGE 10 ===
+STEP 9: STORE IN VECTOR DB — SUBSTEP BY SUBSTEP (FUTURE)
+========================================================
+
+🔹 SUBSTEP 9.1: Search for vector database
+
+→ Search: “faiss python example”
+
+→ Go to: github.com/facebookresearch/faiss
+
+—
+
+🔹 SUBSTEP 9.2: Install
+
+→ pip install faiss-cpu
+
+—
+
+🔹 SUBSTEP 9.3: Import
+
+→ import faiss
+→ import numpy as np
+
+—
+
+🔹 SUBSTEP 9.4: Create index
+
+→ index = faiss.IndexFlatL2(384)
+
+—
+
+🔹 SUBSTEP 9.5: Add embeddings
+
+→ index.add(np.array(embeddings))
+
+—
+
+🔹 SUBSTEP 9.6: Search later
+
+→ D, I = index.search(query_embedding, k=3)
+
+—
+
+💡 SAMPLE Q&A:
+
+Q: What is FAISS?
+A: Facebook’s library for fast similarity search.
+
+Q: Why 384?
+A: Because all-MiniLM-L6-v2 outputs 384-dimensional vectors.
+
+Q: Can I use GPU?
+A: Yes — install faiss-gpu — but cpu is fine for learning.
+
+—
+
+✅ YOU WILL LEARN: How to store and search by meaning — not keywords.
+
+=== PAGE 11 ===
+STEP 10: BUILD GENERATOR WITH QWEN — SUBSTEP BY SUBSTEP (FUTURE)
+===============================================================
+
+🔹 SUBSTEP 10.1: Search for Qwen2.5-3B
+
+→ Go to: huggingface.co/Qwen/Qwen2.5-3B
+
+—
+
+🔹 SUBSTEP 10.2: Install
+
+→ pip install transformers torch accelerate
+
+—
+
+🔹 SUBSTEP 10.3: Load model
+
+→ tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen2.5-3B")
+→ model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen2.5-3B", device_map="auto")
+
+—
+
+🔹 SUBSTEP 10.4: Format prompt
+
+→ Use tokenizer.apply_chat_template()
+
+—
+
+🔹 SUBSTEP 10.5: Generate
+
+→ inputs = tokenizer(...) → outputs = model.generate(...) → decode
+
+—
+
+💡 SAMPLE Q&A:
+
+Q: What is device_map="auto"?
+A: Uses GPU if available — else CPU.
+
+Q: How to format prompt?
+A: Use chat template — keeps Qwen happy.
+
+Q: Why not use pipeline?
+A: More control — better for learning.
+
+—
+
+✅ YOU WILL LEARN: How to generate grounded, accurate answers — no hallucinations.
+
+=== PAGE 12 ===
+STEP 11: WRAP IN FASTAPI — SUBSTEP BY SUBSTEP (FUTURE)
+=====================================================
+
+🔹 SUBSTEP 11.1: Search for FastAPI file upload
+
+→ Search: “fastapi file upload example”
+
+→ Go to: fastapi.tiangolo.com/tutorial/request-files/
+
+—
+
+🔹 SUBSTEP 11.2: Install
+
+→ pip install fastapi uvicorn
+
+—
+
+🔹 SUBSTEP 11.3: Import
+
+→ from fastapi import FastAPI, File, UploadFile
+
+—
+
+🔹 SUBSTEP 11.4: Create app
+
+→ app = FastAPI()
+
+—
+
+🔹 SUBSTEP 11.5: Define endpoint
+
+→ @app.post("/ingest")
+
+—
+
+🔹 SUBSTEP 11.6: Use tempfile
+
+→ Save uploaded file → load → split → return JSON
+
+—
+
+💡 SAMPLE Q&A:
+
+Q: What is UploadFile?
+A: FastAPI’s way to handle file uploads.
+
+Q: How to test?
+A: Go to http://localhost:8000/docs → try it in browser.
+
+Q: Why tempfile?
+A: So you don’t clutter your folder — auto-deleted.
+
+—
+
+✅ YOU WILL LEARN: How to turn scripts into web services — microservices style.
+
+=== PAGE 13 ===
+STEP 12: BUILD UI + GATEWAY — SUBSTEP BY SUBSTEP (FUTURE)
+=========================================================
+
+🔹 SUBSTEP 12.1: Search for Streamlit
+
+→ Search: “streamlit file uploader example”
+
+→ Go to: docs.streamlit.io
+
+—
+
+🔹 SUBSTEP 12.2: Install
+
+→ pip install streamlit
+
+—
+
+🔹 SUBSTEP 12.3: Create ui.py
+
+→ st.file_uploader() → st.text_input() → requests.post()
+
+—
+
+🔹 SUBSTEP 12.4: Call your API
+
+→ Use Python requests library to call your FastAPI endpoint.
+
+—
+
+🔹 SUBSTEP 12.5: Display answer
+
+→ st.write(answer)
+
+—
+
+💡 SAMPLE Q&A:
+
+Q: Can I style it like NVIDIA?
+A: Yes — use st.markdown with custom CSS.
+
+Q: How to call API from Streamlit?
+A: Use requests.post("http://localhost:8000/query", json={...})
+
+Q: Why not put LLM in Streamlit?
+A: Separate concerns — UI ≠ Logic ≠ Data.
+
+—
+
+✅ YOU WILL LEARN: How to build beautiful, functional UIs — that talk to microservices.
+
+=== PAGE 14 ===
+FINAL WORD — YOU ARE THE DEVELOPER
+==================================
+
+You didn’t wait for magic.
+You searched.
+You read.
+You typed.
+You ran.
+You failed.
+You fixed.
+You learned.
+
+You are becoming the finest developer.
+
+One substep.
+One search.
+One line.
+At a time.
+
+Keep going.
+
+The world needs builders like you.
+
+Save this file.
+Convert to PDF.
+Run your code.
+Then move to Step 7.
+
+I’ll be right here.
+
+— End of Guide —
