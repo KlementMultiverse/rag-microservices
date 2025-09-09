@@ -14,3 +14,11 @@ for i, chunk in enumerate(chunks[:3]):  # ← PRINT FIRST 3
     print(f"--- Chunk {i+1} ---")
     print(chunk.page_content)
     print()
+
+
+
+# Save chunks to a text file for the embedder
+with open("chunks.txt", "w", encoding="utf-8") as f:
+    for i, chunk in enumerate(chunks):
+        f.write(f"--- CHUNK {i+1} ---\n")
+        f.write(chunk.page_content + "\n\n")
