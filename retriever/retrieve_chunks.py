@@ -31,10 +31,10 @@ def retrieve_similar_chunks(query: str, k: int = 3):
         text = chunk_texts[idx] if idx < len(chunk_texts) else "N/A"
         results.append({
             "rank": i+1,
-            "chunk_id": idx,
+            "chunk_id": int(idx),  # ← Convert numpy.int64 → Python int
             "distance": float(distance),
             "text": text[:200] + "..." if len(text) > 200 else text
-        })
+	})
     
     return results
 

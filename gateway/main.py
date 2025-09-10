@@ -1,8 +1,7 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Body  # ← Add Body here
 import sys
 import os
 
-# Add parent directory to path
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 from retriever.retrieve_chunks import retrieve_similar_chunks
@@ -15,7 +14,7 @@ def health_check():
     return {"status": "OK", "message": "RAG Gateway is running"}
 
 @app.post("/query")
-def query_rag(question: str):
+def query_rag(question: str = Body(..., embed=True)):  # ← FIXED: Accept from JSON body
     # Retrieve top 3 chunks
     retrieved_chunks = retrieve_similar_chunks(question, k=3)
     
